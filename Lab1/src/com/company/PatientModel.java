@@ -3,8 +3,6 @@ package com.company;
 import static com.company.DataGenerator.getRandomPatient;
 
 public class PatientModel {
-
-
     private Patient[] patients;
 
     public PatientModel(int numberPatients) {

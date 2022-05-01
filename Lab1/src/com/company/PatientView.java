@@ -16,7 +16,6 @@ public class PatientView {
         System.out.println("2 - to get patients with a certain diagnosis");
         System.out.println("3 - to get patients in a certain range");
         System.out.println("4 - to exit the program");
-
     }
 
     public int getOperation() {
@@ -71,14 +70,6 @@ public class PatientView {
     }
 
     public void printPatients(Patient[] patients) {
-        // identificationNumber
-        // name
-        // surname
-        // patronymic
-        // address
-        // phoneNumber
-        // medicalCardNumber
-        // diagnosis
         if (patients.length == 0) {
             System.out.println("No patients to display");
             return;
@@ -109,7 +100,6 @@ public class PatientView {
 
     private int[] calculateColumnWidth(Patient[] patients) {
         int[] result = new int[8];
-        // identificationNumber ID
         result[0] = 12;
         result[1] = 4;
         result[2] = 6;

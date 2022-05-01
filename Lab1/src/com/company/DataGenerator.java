@@ -1,7 +1,7 @@
 package com.company;
 
 public class DataGenerator {
-        private static final String[] NAMES = {"Vlad", "Peter", "Paul", "Lucy", "Jone", "Dmytro", "Alex", "David", "Bogdan", "Mary", "Max", "Tom", "Jane", "Jack"};
+    private static final String[] NAMES = {"Vlad", "Peter", "Paul", "Lucy", "Jone", "Dmytro", "Alex", "David", "Bogdan", "Mary", "Max", "Tom", "Jane", "Jack"};
     private static final String[] SURNAMES = {"Smith", "Miller", "Taylor", "Anderson", "Johnson", "Reich", "Teague", "Hanlon", "Klovatch", "Haskins", "Robb", "Jackson"};
     private static final String[] PATRONYMICS = {"Wesley", "Eugene", "Lynn", "Roland", "Sue", "James", "Paul", "Loraine", "Marie", "Daniel", "Rebecca", "Kaccy", "Divia", "Ado"};
     private static final String[] ADDRESSES = {"420 N. Santa Anita, Arcadia, CA 91006", "1075 W. I-20, Arlington, TX 76017", "1170 W. Branch St., Arroyo Grande, CA 93420",
