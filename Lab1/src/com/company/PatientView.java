@@ -18,40 +18,40 @@ public class PatientView {
         System.out.println("4 - to exit the program");
     }
 
-    public int getOperation() {
+    public long getOperation() {
         printMenu();
         return readNumber("Choose the operation you need: ", new Range(1, 4));
     }
 
-    private int readNumber(String message, Range range) {
-        System.out.println(message);
-        Integer number = null;
-        while (number == null || !range.isInRange(number)) {
-            if (scanner.hasNextInt()) {
-                number = scanner.nextInt();
-                if (!range.isInRange(number)) {
-                    System.out.println("Invalid input, please try again: ");
-                }
-            } else {
-                scanner.next();
+    private long readNumber(String message, Range range) {
+        long number;
+        do {
+            number = readNumber(message);
+            if (!range.isInRange(number)) {
                 System.out.println("Invalid input, please try again: ");
+                message = null;
             }
         }
+        while (!range.isInRange(number));
         return number;
     }
 
-    private int readNumber(String message) {
-        System.out.println(message);
-        Integer number = null;
-        while (number == null) {
-            if (scanner.hasNextInt()) {
-                number = scanner.nextInt();
-            } else {
+    private long readNumber(String message) {
+        if (message != null) {
+            System.out.println(message);
+        }
+        while (true) {
+            try {
+                return readNumber();
+            } catch (IllegalArgumentException e) {
                 scanner.next();
                 System.out.println("Invalid input, please try again: ");
             }
         }
-        return number;
+    }
+
+    private long readNumber() {
+        return scanner.nextLong();
     }
 
     public String getDiagnosis() {
@@ -102,7 +102,7 @@ public class PatientView {
         int[] result = new int[8];
         result[0] = 12;
         result[1] = 4;
-        result[2] = 6;
+        result[2] = 7;
         result[3] = 10;
         result[4] = 7;
         result[5] = 12;

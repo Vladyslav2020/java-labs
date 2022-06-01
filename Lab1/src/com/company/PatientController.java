@@ -10,7 +10,7 @@ public class PatientController {
     }
 
     public void run() {
-        int currentOperation = 0;
+        long currentOperation = 0;
         while (currentOperation != -1) {
             currentOperation = patientView.getOperation();
             if (currentOperation == 1) {

@@ -1,12 +1,12 @@
 package com.company;
 
-import static com.company.DataGenerator.getRandomPatient;
-
 public class PatientModel {
     private Patient[] patients;
+    private PatientDatabase patientDatabase;
 
-    public PatientModel(int numberPatients) {
-        this.patients = getPreparedPatients(numberPatients);
+    public PatientModel(PatientDatabase patientDatabase) {
+        this.patientDatabase = patientDatabase;
+        this.patients = patientDatabase.readAllPatients();
     }
 
     public Patient[] getPatients() {
@@ -38,14 +38,14 @@ public class PatientModel {
     public Patient[] getPatientsInRange(Range range) {
         int count = 0;
         for (Patient patient : this.patients) {
-            if (patient.getMedicalCardNumber() >= range.getLowerBound() && patient.getMedicalCardNumber() <= range.getUpperBound()) {
+            if (range.isInRange(patient.getMedicalCardNumber())) {
                 count++;
             }
         }
         Patient[] patients = new Patient[count];
         int i = 0;
         for (Patient patient : this.patients) {
-            if (patient.getMedicalCardNumber() >= range.getLowerBound() && patient.getMedicalCardNumber() <= range.getUpperBound()) {
+            if (range.isInRange(patient.getMedicalCardNumber())) {
                 patients[i] = patient;
                 i++;
             }
@@ -53,11 +53,4 @@ public class PatientModel {
         return patients;
     }
 
-    private Patient[] getPreparedPatients(int numberPatients) {
-        Patient[] patients = new Patient[numberPatients];
-        for (int i = 0; i < numberPatients; i++) {
-            patients[i] = getRandomPatient();
-        }
-        return patients;
-    }
 }

@@ -10,6 +10,9 @@ public class Patient {
     private long medicalCardNumber;
     private String diagnosis;
 
+    public Patient() {
+    }
+
     public Patient(long identificationNumber, String name, String surname, String patronymic, String address, String phoneNumber, long medicalCardNumber, String diagnosis) {
         this.identificationNumber = identificationNumber;
         this.name = name;
