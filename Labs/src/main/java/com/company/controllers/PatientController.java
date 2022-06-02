@@ -1,4 +1,8 @@
-package com.company;
+package com.company.controllers;
+
+import com.company.models.PatientModel;
+import com.company.views.PatientView;
+import com.company.Range;
 
 public class PatientController {
     private PatientModel patientModel;

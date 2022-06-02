@@ -2,3 +2,6 @@
 out
 *.tmp
 *.iml
+*.txt
+*.out
+target

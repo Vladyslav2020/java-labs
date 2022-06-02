@@ -1,6 +1,10 @@
-package com.company;
+package com.company.views;
+
+import com.company.Range;
+import com.company.entities.Patient;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class PatientView {
@@ -24,22 +28,21 @@ public class PatientView {
     }
 
     private long readNumber(String message, Range range) {
-        long number;
-        do {
-            number = readNumber(message);
-            if (!range.isInRange(number)) {
-                System.out.println("Invalid input, please try again: ");
-                message = null;
+        long number = 0;
+        boolean firstCheck = true;
+        while (firstCheck || !range.isInRange(number)) {
+            try {
+                number = firstCheck ? readNumber(message) : readNumber("Invalid input, please try again: ");
+            } catch (Exception e) {
+                scanner.next();
             }
+            firstCheck = false;
         }
-        while (!range.isInRange(number));
         return number;
     }
 
     private long readNumber(String message) {
-        if (message != null) {
-            System.out.println(message);
-        }
+        System.out.println(message);
         while (true) {
             try {
                 return readNumber();
@@ -69,8 +72,8 @@ public class PatientView {
         scanner.next();
     }
 
-    public void printPatients(Patient[] patients) {
-        if (patients.length == 0) {
+    public void printPatients(List<Patient> patients) {
+        if (patients.size() == 0) {
             System.out.println("No patients to display");
             return;
         }
@@ -98,7 +101,7 @@ public class PatientView {
         }
     }
 
-    private int[] calculateColumnWidth(Patient[] patients) {
+    private int[] calculateColumnWidth(List<Patient> patients) {
         int[] result = new int[8];
         result[0] = 12;
         result[1] = 4;
