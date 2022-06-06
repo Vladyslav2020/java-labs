@@ -1,8 +1,8 @@
 package com.company.controllers;
 
 import com.company.models.PatientModel;
+import com.company.utilities.Range;
 import com.company.views.PatientView;
-import com.company.Range;
 
 public class PatientController {
     private PatientModel patientModel;
@@ -14,21 +14,31 @@ public class PatientController {
     }
 
     public void run() {
-        long currentOperation = 0;
-        while (currentOperation != -1) {
-            currentOperation = patientView.getOperation();
-            if (currentOperation == 1) {
-                patientView.printPatients(patientModel.getPatients());
-            } else if (currentOperation == 2) {
-                String diagnosis = patientView.getDiagnosis();
-                patientView.printPatients(patientModel.getPatientWithDiagnosis(diagnosis));
-            } else if (currentOperation == 3) {
-                Range range = patientView.getRange();
-                patientView.printPatients(patientModel.getPatientsInRange(range));
-            } else if (currentOperation == 4) {
+        int currentOperation;
+        while (true) {
+            currentOperation = (int) patientView.getOperation();
+            switch (Operation.values()[currentOperation - 1]) {
+                case SHOW_ALL_PATIENTS -> patientView.printPatients(patientModel.getPatients());
+                case SHOW_PATIENTS_WITH_SPECIFIC_DIAGNOSIS -> {
+                    String diagnosis = patientView.getDiagnosis();
+                    patientView.printPatients(patientModel.getPatientWithDiagnosis(diagnosis));
+                }
+                case SHOW_PATIENTS_IN_RANGE -> {
+                    Range range = patientView.getRange();
+                    patientView.printPatients(patientModel.getPatientsInRange(range));
+                }
+            }
+            if (Operation.values()[currentOperation - 1] == Operation.EXIT) {
                 break;
             }
             patientView.confirm();
         }
+    }
+
+    public enum Operation {
+        SHOW_ALL_PATIENTS,
+        SHOW_PATIENTS_WITH_SPECIFIC_DIAGNOSIS,
+        SHOW_PATIENTS_IN_RANGE,
+        EXIT
     }
 }
