@@ -1,6 +1,6 @@
 package com.company.utilities.tables;
 
-import com.company.entities.Patient;
+import com.company.models.entities.Patient;
 
 import java.util.Collection;
 import java.util.List;

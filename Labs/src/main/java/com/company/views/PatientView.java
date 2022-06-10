@@ -1,6 +1,6 @@
 package com.company.views;
 
-import com.company.entities.Patient;
+import com.company.models.entities.Patient;
 import com.company.utilities.InputOutputHelper;
 import com.company.utilities.Range;
 import com.company.utilities.tables.TablePrinter;
@@ -38,8 +38,21 @@ public class PatientView {
         return new Range(inputOutputHelper.readNumber("Input lower bound: "), inputOutputHelper.readNumber("Input upper bound: "));
     }
 
+    public boolean isSaveRequired() {
+        String result = inputOutputHelper.readString("Would you like to save result? (y/n) ");
+        return result.equals("y");
+    }
+
     public void confirm() {
         inputOutputHelper.readString("Press 'Enter' to continue: ");
+    }
+
+    public void reportSuccessfulSave() {
+        inputOutputHelper.writeString("Result successfully saved to the file.");
+    }
+
+    public void reportUnsuccessfulSave() {
+        inputOutputHelper.writeString("An error occurred while saving to file.");
     }
 
     public void printPatients(List<Patient> patients) {

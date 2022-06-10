@@ -1,4 +1,4 @@
-package com.company.repositories;
+package com.company.models.repositories;
 
 import java.io.IOException;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.company.entities;
+package com.company.models.entities;
 
 public class Patient {
     private long identificationNumber;

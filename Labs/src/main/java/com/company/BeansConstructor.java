@@ -1,9 +1,9 @@
 package com.company;
 
 import com.company.controllers.PatientController;
-import com.company.entities.Patient;
+import com.company.models.entities.Patient;
 import com.company.models.PatientModel;
-import com.company.repositories.PatientDatabase;
+import com.company.models.repositories.PatientDatabase;
 import com.company.utilities.InputOutputHelper;
 import com.company.utilities.tables.PatientTablePrinter;
 import com.company.utilities.tables.TablePrinter;
@@ -20,7 +20,7 @@ public class BeansConstructor {
         PatientModel patientModel = null;
         PatientView patientView = null;
         try {
-            PatientDatabase patientDatabase = new PatientDatabase("src/main/resources/data.txt");
+            PatientDatabase patientDatabase = new PatientDatabase("src/main/resources/data.txt", "src/main/resources/result.txt");
             patientModel = new PatientModel(patientDatabase);
             TablePrinter<Patient> patientTablePrinter = new PatientTablePrinter();
             patientView = new PatientView(inputOutputHelper, patientTablePrinter);

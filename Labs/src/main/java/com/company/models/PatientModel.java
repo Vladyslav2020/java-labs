@@ -1,9 +1,8 @@
 package com.company.models;
 
-import com.company.entities.Patient;
-import com.company.repositories.PatientDatabase;
+import com.company.models.entities.Patient;
+import com.company.models.repositories.PatientDatabase;
 import com.company.utilities.Range;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,10 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PatientModel {
+    private PatientDatabase patientDatabase;
     private List<Patient> patients;
 
     public PatientModel(PatientDatabase patientDatabase) throws IOException {
-        this.patients = patientDatabase.getAllEntities();
+        this.patientDatabase = patientDatabase;
+        this.patients = this.patientDatabase.getAllEntities();
     }
 
     public List<Patient> getPatientWithDiagnosis(String diagnosis) {
@@ -37,5 +38,9 @@ public class PatientModel {
 
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
+    }
+
+    public void savePatients(List<Patient> patients) throws IOException {
+        patientDatabase.saveEntities(patients);
     }
 }
