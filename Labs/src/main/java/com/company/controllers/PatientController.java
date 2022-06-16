@@ -4,6 +4,7 @@ import com.company.models.entities.Patient;
 import com.company.models.PatientModel;
 import com.company.utilities.Range;
 import com.company.views.PatientView;
+import com.company.views.UserOperation;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -22,11 +23,11 @@ public class PatientController {
     }
 
     public void run() {
-        int chosenOperation;
+        UserOperation chosenOperation;
         while (true) {
-            chosenOperation = (int) patientView.getOperation();
+            chosenOperation = patientView.getOperation();
             List<Patient> result = new ArrayList<>();
-            switch (Operation.values()[chosenOperation - 1]) {
+            switch (chosenOperation) {
                 case SHOW_ALL_PATIENTS -> {
                     result = patientModel.getPatients();
                     patientView.printPatients(result);
@@ -55,12 +56,5 @@ public class PatientController {
                 patientView.confirm();
             }
         }
-    }
-
-    public enum Operation {
-        SHOW_ALL_PATIENTS,
-        SHOW_PATIENTS_WITH_SPECIFIC_DIAGNOSIS,
-        SHOW_PATIENTS_IN_RANGE,
-        EXIT
     }
 }

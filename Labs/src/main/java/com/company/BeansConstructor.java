@@ -28,10 +28,6 @@ public class BeansConstructor {
             logger.error("Cannot read data from the file", e);
             inputOutputHelper.writeString("Program bootstrap failed: cannot read data from the database. Check the program configuration.");
             System.exit(-1);
-        } catch (Exception e) {
-            logger.error("An error occurred while constructing the beans", e);
-            inputOutputHelper.writeString("Program bootstrap failed. An unhandled error has occurred.");
-            System.exit(-1);
         }
         return new PatientController(patientModel, patientView);
     }

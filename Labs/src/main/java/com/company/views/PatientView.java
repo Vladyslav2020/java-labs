@@ -24,9 +24,10 @@ public class PatientView {
         inputOutputHelper.writeString("4 - to exit the program");
     }
 
-    public long getOperation() {
+    public UserOperation getOperation() {
         printMenu();
-        return inputOutputHelper.readNumber("Choose the operation you need: ", new Range(1, 4));
+        int operation = (int) inputOutputHelper.readNumber("Choose the operation you need: ", new Range(1, 4));
+        return UserOperation.values()[operation - 1];
     }
 
     public String getDiagnosis() {
